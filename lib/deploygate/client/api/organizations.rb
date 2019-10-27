@@ -27,7 +27,7 @@ module Deploygate
           api.delete "/api/organizations/#{org_name}"
         end
 
-        def get_organization_members(org_name:, team_name: nil)
+        def get_organization_members(org_name:)
           api.get "/api/organizations/#{org_name}/members"
         end
 
