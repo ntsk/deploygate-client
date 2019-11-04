@@ -1,18 +1,20 @@
 version: 2
 jobs:
-  test:
-    machine:
-      - image: circleci/classic:edge
+  build:
+    docker:
+      - image: circleci/ruby:2.6.0-node-browsers
+
     steps:
       - checkout
+
       - run:
           name: install dependencies
-          command: bundle install --jobs=4 --retry=3 --path vendor/bundle
+          command: |
+            gem install bundler
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - run:
           name: run tests
-          command: bundle exec rspec spec
-workflows:
-  version: 2
-  test:
-    jobs:
-      - test
+          command: |
+
+            bundle exec rspec
