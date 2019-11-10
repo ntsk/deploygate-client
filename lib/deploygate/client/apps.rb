@@ -111,8 +111,8 @@ module Deploygate
       # @param app_id [String] Application package name
       # @return [Deploygate::Client::Response]
       def app_teams(org_name:, platform:, app_id:)
-        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}\
-        /apps/#{app_id}/teams"
+        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}"\
+          "/apps/#{app_id}/teams"
         res = api.get endpoint
         Response.new(res)
       end
@@ -126,8 +126,8 @@ module Deploygate
       # @param team [String] Team name
       # @return [Deploygate::Client::Response]
       def add_app_team(org_name:, platform:, app_id:, team_name:)
-        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}\
-          /apps/#{app_id}/teams"
+        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}"\
+          "/apps/#{app_id}/teams"
         res = api.post endpoint do |request|
           request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
           request.body = URI.encode_www_form(
@@ -146,8 +146,8 @@ module Deploygate
       # @param team [String] Team name
       # @return [Deploygate::Client::Response]
       def delete_app_team(org_name:, platform:, app_id:, team_name:)
-        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}\
-          /apps/#{app_id}/teams/#{team_name}"
+        endpoint = "/api/organizations/#{org_name}/platforms/#{platform}"\
+          "/apps/#{app_id}/teams/#{team_name}"
         res = api.delete endpoint
         Response.new(res)
       end
@@ -161,8 +161,8 @@ module Deploygate
       # @param dist_name [String] Distribution page name
       # @return [Deploygate::Client::Response]
       def delete_app_distribution(owner:, platform:, app_id:, dist_name:)
-        endpoint = "/api/users/#{owner}/platforms/#{platform}\
-          /apps/#{app_id}/distributions"
+        endpoint = "/api/users/#{owner}/platforms/#{platform}"\
+          "/apps/#{app_id}/distributions"
         res = api.delete endpoint do |request|
           request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
           request.body = URI.encode_www_form(
