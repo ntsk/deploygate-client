@@ -4,7 +4,7 @@ require 'deploygate/client/response'
 
 module Deploygate
   class Client
-    # Request to application endpoints
+    # Request to organizations endpoints
     module Organizations
       # Get a list of organizations.
       # @see https://docs.deploygate.com/reference#organizations-index
