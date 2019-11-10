@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 require 'faraday'
 require 'faraday_middleware'
 
 module Deploygate
   class Client
+    # Default faraday settings
     module API
       BASE_URL = 'https://deploygate.com'
 
       def token
-        ENV["DEPLOYGATE_TOKEN"]
+        ENV['DEPLOYGATE_TOKEN']
       end
 
       private
@@ -16,10 +19,15 @@ module Deploygate
         @api ||= Faraday.new(url: BASE_URL) do |builder|
           builder.options.open_timeout = open_timeout
           builder.options.timeout = timeout
+
           builder.request :multipart
-          builder.response :json, parser_options: { symbolize_names: true } if symbolize_response
+
+          if symbolize_response
+            builder.response :json, parser_options: { symbolize_names: true }
+          end
+
           builder.headers['Authorization'] = "token #{token}"
-          builder.adapter Faraday::default_adapter
+          builder.adapter Faraday.default_adapter
         end
       end
     end

@@ -1,9 +1,11 @@
-require "deploygate/client/response"
+# frozen_string_literal: true
+
+require 'deploygate/client/response'
 
 module Deploygate
   class Client
+    # Request to application endpoints
     module Organizations
-
       # Get a list of organizations.
       # @see https://docs.deploygate.com/reference#organizations-index
       #
@@ -103,7 +105,8 @@ module Deploygate
       # @param user_name [String] User name
       # @return [Deploygate::Client::Response]
       def delete_organization_member(org_name:, user_name:)
-        res = api.delete "/api/organizations/#{org_name}/members/#{user_name}" do |request|
+        endpoint = "/api/organizations/#{org_name}/members/#{user_name}"
+        res = api.delete endpoint do |request|
           request.params[:id] = user_name
         end
         Response.new(res)
@@ -116,7 +119,8 @@ module Deploygate
       # @param email [String] User email
       # @return [Deploygate::Client::Response]
       def delete_organization_member_by_email(org_name:, email:)
-        res = api.delete "/api/organizations/#{org_name}/members/#{email}" do |request|
+        endpoint = "/api/organizations/#{org_name}/members/#{email}"
+        res = api.delete endpoint do |request|
           request.params[:id] = email
         end
         Response.new(res)
@@ -141,7 +145,8 @@ module Deploygate
       # @param user_name [String] User name
       # @return [Deploygate::Client::Response]
       def add_team_member(org_name:, team_name:, user_name:)
-        res = api.post "/api/organizations/#{org_name}/teams/#{team_name}/users" do |request|
+        endpoint = "/api/organizations/#{org_name}/teams/#{team_name}/users"
+        res = api.post endpoint do |request|
           request.params[:user] = user_name
         end
         Response.new(res)
@@ -155,7 +160,8 @@ module Deploygate
       # @param user_name [String] User name
       # @return [Deploygate::Client::Response]
       def delete_team_member(org_name:, team_name:, user_name:)
-        res = api.delete "/api/organizations/#{org_name}/teams/#{team_name}/users/#{user_name}"
+        endpoint = "/api/organizations/#{org_name}/teams/#{team_name}/users/#{user_name}"
+        res = api.delete endpoint
         Response.new(res)
       end
     end
