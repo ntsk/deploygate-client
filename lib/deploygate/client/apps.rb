@@ -8,10 +8,16 @@ module Deploygate
       ROLE_DEVELOPER = 1
       ROLE_TESTER = 2
 
-      def add_app(owner:, file_path:, message: nil, distribution_key: nil, distribution_name: nil, release_note: nil, disable_notify: nil, visibility: nil)
+      def upload_app(owner:, file_path:, message: nil, dist_key: nil, dist_name: nil, release_note: nil, disable_notify: nil, visibility: nil)
         res = api.post "/api/users/#{owner}/apps" do |request|
           request.body = {
-            file: Faraday::UploadIO.new(file_path, 'octet/stream')
+            file: Faraday::UploadIO.new(file_path, 'octet/stream'),
+            message: message,
+            distribution_key: dist_key,
+            distribution_name: dist_name,
+            release_note: release_note,
+            disable_notify: disable_notify,
+            visibility: visibility
           }
         end
         Response.new(res)
