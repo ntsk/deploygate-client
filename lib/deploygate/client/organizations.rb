@@ -2,6 +2,7 @@ require "deploygate/client/response"
 
 module Deploygate
   class Client
+    # Request to application endpoints
     module Organizations
 
       # Get a list of organizations.
