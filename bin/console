@@ -1,7 +1,9 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "deploygate/client"
-require "pry"
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'deploygate/client'
+require 'pry'
 
 Pry.start
