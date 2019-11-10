@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Deploygate
   class Client
+    # Api response
     class Response
       attr_accessor :body, :headers, :status
 
@@ -12,7 +15,6 @@ module Deploygate
       def success?
         (200..299).include?(status)
       end
-
     end
   end
 end
