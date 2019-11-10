@@ -9,10 +9,6 @@ module Deploygate
     module API
       BASE_URL = 'https://deploygate.com'
 
-      def token
-        ENV['DEPLOYGATE_TOKEN']
-      end
-
       private
 
       def api

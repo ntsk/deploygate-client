@@ -14,12 +14,20 @@ module Deploygate
     include Deploygate::Client::Apps
     include Deploygate::Client::Organizations
 
-    attr_reader :symbolize_response, :open_timeout, :timeout
+    attr_reader :token, :symbolize_response, :open_timeout, :timeout
 
-    def initialize(options = {})
-      @symbolize_response = options[:symbolize_response] || false
-      @open_timeout = options[:open_timeout] || 10
-      @timeout = options[:timeout] || 30
+    # Use options passed in
+    #
+    # @param token [String] DeployGate API token
+    # @option symbolize_response [Boolean] Parse response to symbolized hash
+    # @option open_timeout [Integer] Open timeout Integer in seconds
+    # @option timeout [Integer] Read timeout Integer in seconds
+    # @return [Deploygate::Client]
+    def initialize(token:, symbolize_response: false, open_timeout: 10, timeout: 30)
+      @token = token
+      @symbolize_response = symbolize_response
+      @open_timeout = open_timeout
+      @timeout = timeout
     end
   end
 end
