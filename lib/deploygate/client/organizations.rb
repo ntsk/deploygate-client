@@ -39,17 +39,30 @@ module Deploygate
         Response.new(res)
       end
 
-      def add_organization_member(org_name:, user_name: nil, email: nil)
+      def add_organization_member(org_name:, user_name:)
         res = api.post "/api/organizations/#{org_name}/members" do |request|
-          request.params[:user_name] = user_name
+          request.params[:username] = user_name
+        end
+        Response.new(res)
+      end
+
+      def add_organization_member_by_email(org_name:, email:)
+        res = api.post "/api/organizations/#{org_name}/members" do |request|
           request.params[:email] = email
         end
         Response.new(res)
       end
 
-      def delete_organization_member(org_name:, user_id:)
-        res = api.delete "/api/organizations/#{org_name}/members/#{user_id}" do |request|
-          request.params[:id] = user_id
+      def delete_organization_member(org_name:, user_name:)
+        res = api.delete "/api/organizations/#{org_name}/members/#{user_name}" do |request|
+          request.params[:id] = user_name
+        end
+        Response.new(res)
+      end
+
+      def delete_organization_member_by_email(org_name:, email:)
+        res = api.delete "/api/organizations/#{org_name}/members/#{email}" do |request|
+          request.params[:id] = email
         end
         Response.new(res)
       end
