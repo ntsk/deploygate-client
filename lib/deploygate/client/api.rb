@@ -27,7 +27,7 @@ module Deploygate
           end
 
           builder.headers['Authorization'] = "token #{token}"
-          builder.adapter default_adapter
+          builder.adapter Faraday.default_adapter
         end
       end
     end
