@@ -1,7 +1,5 @@
 # Deploygate::Client
-Ruby client library for [DeployGate](https://deploygate.com).
-
-This is an unofficial library for requesting to [DeployGate API](https://docs.deploygate.com/reference).
+This is an unofficial ruby client library for [DeployGate](https://deploygate.com).
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-client = Deploygate::Client.new(token: YOUR_DEPLOYGATE_TOKEN)
+client = Deploygate::Client.new(token: 'YOUR_DEPLOYGATE_TOKEN')
+
+# GET https://deploygate.com/api/organizations
 response = client.organizations
 ```
 
